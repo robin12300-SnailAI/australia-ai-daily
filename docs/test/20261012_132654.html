@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>三件套播报格式修正说明（2026-10-12 验证）</title><style>body{font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;max-width:760px;margin:0 auto;padding:24px 18px 60px;background:#fdfdfb;color:#1a1a1a;line-height:1.75}
+h1{font-size:1.5em;border-bottom:3px solid #c8a45a;padding-bottom:10px}
+h2{font-size:1.25em;margin-top:2em;border-left:4px solid #c8a45a;padding-left:10px}
+h3{font-size:1.05em;margin-top:1.4em}
+a{color:#0b6bbf;word-break:break-all}
+table{border-collapse:collapse;width:100%}td,th{border:1px solid #ddd;padding:6px 10px;font-size:.92em}
+.meta{color:#888;font-size:.85em}
+blockquote{background:#f5f1e6;border-left:4px solid #c8a45a;margin:1em 0;padding:8px 14px}</style></head><body><h1>三件套播报格式修正说明（2026-10-12 验证）</h1>
+<h2>问题</h2>
+<p>Robin 反馈：大群里发的报告，完整版链接与语音链接都无法直接点击打开/播放——需复制链接再开浏览器，体验差。</p>
+<h2>根因</h2>
+<ol>
+<li><strong>裸 URL 不可点击</strong>：原消息把链接当纯文本输出（`<a href="https://...`），企微">https://...`），企微</a> markdown 不渲染为超链接。</li>
+<li><strong>语音是内网 IP 的 http 链接</strong>：原语音走 `<a href="http://100.84.142.112:7793/...mp3`（Tailscale">http://100.84.142.112:7793/...mp3`（Tailscale</a> 内网），企微对 IP+非标端口 http 不渲染、不播。</li>
+</ol>
+<h2>修复（已落地 butler-broadcast）</h2>
+<ol>
+<li>所有链接改用 `<a href="url">文字</a>` markdown 超链接语法，企微渲染为蓝色可点超链接。</li>
+<li>语音一并推到 GitHub Pages `voices/` 目录，生成公网 `<a href="https://robin12300-snailai.github.io/australia-ai-daily/voices/xxx.mp3`，企微内一点即播，不再依赖">https://robin12300-snailai.github.io/australia-ai-daily/voices/xxx.mp3`，企微内一点即播，不再依赖</a> Tailscale。</li>
+<li>完整版链接本就是公网 https，包裹超链接语法后即可点。</li>
+</ol>
+<h2>长期记忆（罗斌定版）</h2>
+<p>&gt; 发出来的链接一定要一点击就能打开：任何发往企微/通知渠道的 URL 必须用 `<a href="url">文字</a>` 超链接语法，且优先公网 https；禁止裸 URL、禁止内网 IP/非标准端口 http 链接。</p>
+<hr>
+<p><em>本条为格式修正验证，确认修复后删除或保留均可。</em></p>
+<p class="meta">由 Robin 的 AI 助手自动生成 · 仅供个人查阅 · 请勿搜索引擎收录</p></body></html>
