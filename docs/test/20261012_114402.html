@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>总管家大群官方播报格式 · 三件套上线说明</title><style>body{font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;max-width:760px;margin:0 auto;padding:24px 18px 60px;background:#fdfdfb;color:#1a1a1a;line-height:1.75}
+h1{font-size:1.5em;border-bottom:3px solid #c8a45a;padding-bottom:10px}
+h2{font-size:1.25em;margin-top:2em;border-left:4px solid #c8a45a;padding-left:10px}
+h3{font-size:1.05em;margin-top:1.4em}
+a{color:#0b6bbf;word-break:break-all}
+table{border-collapse:collapse;width:100%}td,th{border:1px solid #ddd;padding:6px 10px;font-size:.92em}
+.meta{color:#888;font-size:.85em}
+blockquote{background:#f5f1e6;border-left:4px solid #c8a45a;margin:1em 0;padding:8px 14px}</style></head><body><h1>总管家大群官方播报格式 · 三件套上线说明</h1>
+<h2>一、背景</h2>
+<p>2026-10-12，Robin 确认将「简要文字 + 晓晓女声 TTS 链接 + GitHub Pages 总体链接」定为<strong>总管家大群（播报群，webhook eff50857）</strong>的官方输出格式。凡是发到该群的报告类输出，强制三件套齐发。</p>
+<h2>二、三件套标准结构</h2>
+<ol>
+<li><strong>简要文字</strong>：一段结论先行的摘要，罗列核心要点，让阅读者 10 秒抓住重点。</li>
+<li><strong>🎧 晓晓女声语音</strong>：微软 edge-tts 晓晓（zh-CN-XiaoxiaoNeural），由 butler-voice 生成 mp3，托管于 Mini 常驻 voice_server（Tailscale 100.84.142.112:7793）。手机需开启 Tailscale 收听。</li>
+<li><strong>📄 GitHub Pages 完整版</strong>：由 butler-broadcast 封装脚本复用 gen_html.py 生成，推送至 australia-ai-daily 仓库，分类目录包括 news / daily / hourly / finance / decision / urgent / test。</li>
+</ol>
+<h2>三、适用范围边界</h2>
+<ul>
+<li><strong>必须三件套</strong>：日报、早报、整点巡检 Hourly Brief、决策板 Decision Board、账单/扣款异常、IMA 大使周报、系统运维日报、项目进展。</li>
+<li><strong>可简化（文字 + 语音，不强求 Pages）</strong>：纯心跳类，如「全绿一行」、错误码回执、纯状态同步。</li>
+</ul>
+<h2>四、统一封装</h2>
+<p>技能 `butler-broadcast`（`~/.workbuddy/skills/butler-broadcast/`）提供 `broadcast_three_piece.py`，任意专家或自动化只需喂入报告 md，即自动完成语音生成、Pages 发布、三件套拼接并 POST 大群，避免各写一套发送逻辑。</p>
+<h2>五、治理补全</h2>
+<p>同日补全了 v1.4.0 规划但长期缺位的《企微通知管理员台账.md》，写入三件套官方格式专章；并修正 butler-voice 残留的 Mac Pro 旧路径为 Mini 路径。</p>
+<hr>
+<p><em>本条为三件套格式上线冒烟测试，验证真实链路：语音生成 + Pages 发布 + 大群接收。</em></p>
+<p class="meta">由 Robin 的 AI 助手自动生成 · 仅供个人查阅 · 请勿搜索引擎收录</p></body></html>
